@@ -1,9 +1,10 @@
-html{
-  background-color: indigo;
+body{
+  background-color: #123d5b;
+  text-align: center;
 }
 
 h1 {
   font-size: 80px;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Architects Daughter', cursive;
   color: white;
 }
