@@ -3,74 +3,51 @@
 
 var clock = document.getElementById('clock');
 var hexColor = document.getElementById('hex-color');
+// var clockFace = document.getElementById('clock');
+var isHovering = false;
 
 function colorClock() {
   var time = new Date();
-  var hours = (time.getHours() % 12);
-  var minutes = time.getMinutes();
-  var seconds = time.getSeconds();
 
-  if (hours < 10) {
-    hours = '0' + hours;
+  var hours = ('0' + (time.getHours()%12)).slice(-2);
+  var minutes = ('0' + time.getMinutes()).slice(-2);
+  var seconds = ('0' + time.getSeconds()).slice(-2);
+
+  var hexRed = ('0' + time.getHours().toString(16)).slice(-2);
+  var hexGreen = ('0' + time.getMinutes().toString(16)).slice(-2);
+  var hexBlue = ('0' + time.getSeconds().toString(16)).slice(-2);
+
+  var timeCode = hours + ':' + minutes + ':' + seconds;
+  var hexCode = hours + minutes + seconds;
+
+  // updating clock display
+  if (isHovering) {
+    clock.textContent = hexCode;
+  } else {
+    clock.textContent = timeCode;
   }
 
-  if (minutes < 10) {
-    minutes = '0' + minutes;
-  }
+  // updating progress bar
+  var timeLine = seconds / 60 * 100;
+  document.getElementById('bar').style.width = timeLine + "%";
 
-  if (seconds < 10) {
-    seconds = '0' + seconds;
-  }
-
-  // ASK ABOUT .LENGTH
-// if (minutes.length < 2) {
-//   minutes = '0' + minutes;
-// }
-
-var clockStr = hours + ':' + minutes + ':' + seconds;
-var hexColorStr = '#' + hours + minutes + seconds;
-
-clock.textContent = clockStr;
-
-
-var timeLine = seconds / 60 * 100;
-document.getElementById('bar').style.width = timeLine + "%";
-document.body.style.backgroundColor = hexColorStr;
-
-        // Gradient
-// var canvas = document.getElementById('myCanvas');
-//      var context = canvas.getContext('2d');
-//      context.rect(0, 0, canvas.width, canvas.height);
-//
-//      // create radial gradient
-//      var grd = context.createRadialGradient(238, 50, 10, 238, 50, 300);
-//      // light blue
-//      grd.addColorStop(0, '#8ED6FF');
-//      // dark blue
-//      grd.addColorStop(1, '#004CB3');
-//
-//      context.fillStyle = grd;
-//      context.fill();
-
-              // HOVER
-    var hover = document.getElementById('clock');
-      function isInside(node, target) {
-        for (; node != null; node = node.parentNode)
-          if (node == target) return true;
-      }
-      hover.addEventListener("mouseover", function(event) {
-        if (!isInside(event.relatedTarget, hover))
-          document.getElementById('clock').innerText = hexColorStr;
-      });
-      hover.addEventListener("mouseout", function(event) {
-        if (!isInside(event.relatedTarget, hover))
-          document.getElementById('clock').innerText = clockStr;
-      });
-
-      console.log('working as intended..');
-
+  // updating background color
+  // hexCode.split("") => "1" "2" "3"
+  var reverseHex = hexCode.split("").reverse().join("");
+  document.body.style.backgroundImage = "radial-gradient(ellipse farthest-corner , #" + reverseHex + " 0%, #" + hexCode + " 95%)"
 }
-      window.setInterval(colorClock, 1000)
 
+  clock.addEventListener('mouseover', handleMouseOver);
+  clock.addEventListener('mouseout', handleMouseOut);
+
+  function handleMouseOver(){
+    isHovering = true;
+  }
+
+  function handleMouseOut(){
+    isHovering = false;
+  }
+
+  window.setInterval(colorClock, 100)
 
 }());
