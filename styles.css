@@ -2,18 +2,16 @@ body {
   text-align: center;
   color: #9f909a;
   font-family: 'Montserrat', sans-serif;
+
+  background: linear-gradient(100deg, #ED1C24, #FCEE21)
+  background-size: cover;
+
 }
 
 h1 {
   font-size: 80px;
-  margin-top: 200px;
-  margin-bottom: 0px;
-}
-
-p{
-  font-size: 30px;
   margin-top: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 #bar {

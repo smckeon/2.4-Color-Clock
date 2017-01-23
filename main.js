@@ -6,7 +6,6 @@ var hexColor = document.getElementById('hex-color');
 
 function colorClock() {
   var time = new Date();
-  // ASK ABOUT MOD 12 ON MONDAY
   var hours = (time.getHours() % 12);
   var minutes = time.getMinutes();
   var seconds = time.getSeconds();
@@ -32,12 +31,26 @@ var clockStr = hours + ':' + minutes + ':' + seconds;
 var hexColorStr = '#' + hours + minutes + seconds;
 
 clock.textContent = clockStr;
-hexColor.textContent = hexColorStr;
 
 
 var timeLine = seconds / 60 * 100;
 document.getElementById('bar').style.width = timeLine + "%";
 document.body.style.backgroundColor = hexColorStr;
+
+        // Gradient
+// var canvas = document.getElementById('myCanvas');
+//      var context = canvas.getContext('2d');
+//      context.rect(0, 0, canvas.width, canvas.height);
+//
+//      // create radial gradient
+//      var grd = context.createRadialGradient(238, 50, 10, 238, 50, 300);
+//      // light blue
+//      grd.addColorStop(0, '#8ED6FF');
+//      // dark blue
+//      grd.addColorStop(1, '#004CB3');
+//
+//      context.fillStyle = grd;
+//      context.fill();
 
               // HOVER
     var hover = document.getElementById('clock');
@@ -55,7 +68,6 @@ document.body.style.backgroundColor = hexColorStr;
       });
 
       console.log('working as intended..');
-
 
 }
       window.setInterval(colorClock, 1000)
