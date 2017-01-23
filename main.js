@@ -1,42 +1,6 @@
 (function(){
 'use strict';
 
-
-                          // 1st Attempt
-// function updateTime() {
-//   var time = new Date();
-//   var seconds = time.getSeconds();
-//   var secondsContent = document.querySelector(".elapsed-time .seconds");
-//   secondsContent.textContent = seconds;
-//
-//   var minutes = time.getMinutes();
-//   var minutesContent = document.querySelector(".elapsed-time .minutes");
-//   minutesContent.textContent = minutes;
-//
-//   var hours = time.getHours();
-//   var hoursContent = document.querySelector(".elapsed-time .hours");
-//   hoursContent.textContent = hours;
-//
-//   // document.getItemByClassName('txt')= .hours + ":" + .minutes + ":" + .seconds;
-//
-//   // hours = ((hours + 11) % 12 + 1);
-//   // hours = (hours > 12)? hours -12 : hours;
-//
-//   console.log('You finally did it!')
-//
-// }
-//
-// window.setInterval(updateTime, 1000)
-
-
-                    // 2nd Attempt
-
-// var time = new Date();
-//
-// console.log(time.getHours() % 12);
-// console.log(time.getMinutes());
-// console.log(time.getSeconds());
-
 var clock = document.getElementById('clock');
 var hexColor = document.getElementById('hex-color');
 
@@ -54,7 +18,6 @@ function colorClock() {
   if (minutes < 10) {
     minutes = '0' + minutes;
   }
-
 
   if (seconds < 10) {
     seconds = '0' + seconds;
@@ -76,12 +39,26 @@ var timeLine = seconds / 60 * 100;
 document.getElementById('bar').style.width = timeLine + "%";
 document.body.style.backgroundColor = hexColorStr;
 
+              // HOVER
+    var hover = document.getElementById('clock');
+      function isInside(node, target) {
+        for (; node != null; node = node.parentNode)
+          if (node == target) return true;
+      }
+      hover.addEventListener("mouseover", function(event) {
+        if (!isInside(event.relatedTarget, hover))
+          document.getElementById('clock').innerText = hexColorStr;
+      });
+      hover.addEventListener("mouseout", function(event) {
+        if (!isInside(event.relatedTarget, hover))
+          document.getElementById('clock').innerText = clockStr;
+      });
 
-console.log(document.body.style.backgroundColor);
+      console.log('working as intended..');
+
+
 }
+      window.setInterval(colorClock, 1000)
 
-window.setInterval(colorClock, 1000)
-
-// clock.textContent = '';
 
 }());

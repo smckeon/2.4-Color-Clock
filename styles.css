@@ -1,13 +1,19 @@
-body{
+body {
   text-align: center;
   color: #9f909a;
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1, p{
+h1 {
   font-size: 80px;
-  font-family: 'Architects Daughter', cursive;
-  margin-top: 20px;
+  margin-top: 200px;
   margin-bottom: 0px;
+}
+
+p{
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 
 #bar {
