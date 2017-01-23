@@ -3,7 +3,6 @@
 
 var clock = document.getElementById('clock');
 var hexColor = document.getElementById('hex-color');
-// var clockFace = document.getElementById('clock');
 var isHovering = false;
 
 function colorClock() {
@@ -18,7 +17,7 @@ function colorClock() {
   var hexBlue = ('0' + time.getSeconds().toString(16)).slice(-2);
 
   var timeCode = hours + ':' + minutes + ':' + seconds;
-  var hexCode = hours + minutes + seconds;
+  var hexCode = hexRed + hexGreen + hexBlue;
 
   // updating clock display
   if (isHovering) {
@@ -51,3 +50,5 @@ function colorClock() {
   window.setInterval(colorClock, 100)
 
 }());
+
+//
